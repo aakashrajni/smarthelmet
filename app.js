@@ -34,11 +34,11 @@ io.on('connection', function(socket){
    
     socket.on('message',function(data){
         console.log(data);
-        socket.emit('pass',data);
+        io.sockets.emit('pass',data);
     });
 
     socket.on('disconnect',function(){
-        io.sockets.emit('broadcast',{ Msg: ' Clients connected!'});
+        console.log('A user Disconnected');
     });
 });
 
