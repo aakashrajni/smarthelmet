@@ -209,7 +209,7 @@
 		<script>
 		   var socket = io();
 		   socket.on('pass', function(data){
-			 document.getElementById('pdata').innerHTML(data);
+			 document.getElementById('pdata').innerHTML = data;
 		 });
 		</script>
 
