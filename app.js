@@ -57,11 +57,11 @@ io.on('connection', function(socket){
             var psp = io.of('/'+data);
             psp.on("connection",function(socket){
                 console.log("new con");
-                socket.emit('change',"true");
-                socket.on('message',function(data){
+                psp.emit('change',"true");
+                psp.on('message',function(data){
                 console.log(data);
-                socket.emit('pass',data);
-            })
+                psp.emit('pass',data);
+            });
             });
         }    
     });
