@@ -53,8 +53,9 @@ io.on('connection', function(socket){
         console.log(ipad, data);
 
         if(ipad == data){
-            console.log("true");
-            var psp = io.of('/'+data);
+            var ns = '/'+ data;
+            console.log(ns,"true");
+            var psp = io.of(ns);
             psp.on("connection",function(socket){
                 console.log("new con");
                 psp.emit('change',"true");
