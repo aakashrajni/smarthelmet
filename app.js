@@ -53,16 +53,11 @@ io.on('connection', function(socket){
         console.log(ipad, data);
 
         if(ipad == data){
-            var ns = '/'+ data;
-            console.log(ns,"true");
-            var psp = io.of('ns');
-            psp.on("connection",function(socket){
-                console.log("new con");
-                psp.emit('change',"true");
-                psp.on('message',function(data){
+            console.log("true");
+            socket.emit(data,"true");
+            socket.on('message',function(data){
                 console.log(data);
-                psp.emit('pass',data);
-            });
+                socket.emit('pass',data);
             });
         }    
     });
