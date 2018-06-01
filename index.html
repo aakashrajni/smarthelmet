@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Hyperspace by HTML5 UP</title>
+		<title>Throttlers</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -36,9 +36,10 @@
 				<!-- Intro -->
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
-							<h1>Hyperspace</h1>
+							<h1>Throttlers</h1>
 							<p id="pdata">Just another fine responsive site template designed by HTML5 UP<br />
 							and released for free under the Creative Commons.</p>
+							<img id="imgp" src="/images/sampleqr.png" alt="ImageError" style="height: 35%;width: 35%; margin-bottom: 10px; margin-top: -15px"/>
 							<ul class="actions">
 								<li><a href="#one" class="button scrolly">Learn more</a></li>
 							</ul>
@@ -211,6 +212,9 @@
 		   socket.on('pass', function(data){
 			 document.getElementById('pdata').innerHTML = data;
 		 });
+		 	socket.on('qr',function(data){
+			 document.getElementById('imgp').src = data;
+			 });
 		</script>
 
 	</body>

@@ -5,6 +5,8 @@ var io = require('socket.io')(http);
 var os = require('os');
 var ifaces = os.networkInterfaces();
 var PORT = process.env.PORT || 3000;
+var QRCode = require('qrcode');
+var qrurl;
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req,res){
@@ -19,10 +21,16 @@ app.get('/', function(req,res){
       
           if (alias >= 1) {
             // this single interface has multiple ipv4 addresses
-            console.log(ifname + ':' + alias, iface.address);
+            // console.log(ifname + ':' + alias, iface.address);
+            QRCode.toDataURL(iface.address, function (err, url) {
+                qrurl = url;
+              })
           } else {
             // this interface has only one ipv4 adress
-            console.log(ifname, iface.address);
+            // console.log(ifname, iface.address);
+            QRCode.toDataURL(iface.address, function (err, url) {
+                qrurl = url;
+              })
           }
           ++alias;
         });
@@ -33,7 +41,7 @@ app.get('/', function(req,res){
 
 io.on('connection', function(socket){
     console.log('A user connected');
-   
+    socket.emit('qr',qrurl);
     socket.on('message',function(data){
         console.log(data);
         io.sockets.emit('pass',data);
