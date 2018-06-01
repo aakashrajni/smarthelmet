@@ -1,9 +1,11 @@
 var app = require('express')();
+var express = require('express');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var os = require('os');
 var ifaces = os.networkInterfaces();
 var PORT = process.env.PORT || 3000;
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req,res){
     Object.keys(ifaces).forEach(function (ifname) {
