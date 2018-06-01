@@ -36,8 +36,8 @@
 				<!-- Intro -->
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
-							<h1 id="pdata">Hyperspace</h1>
-							<p >Just another fine responsive site template designed by HTML5 UP<br />
+							<h1>Hyperspace</h1>
+							<p id="pdata">Just another fine responsive site template designed by HTML5 UP<br />
 							and released for free under the Creative Commons.</p>
 							<ul class="actions">
 								<li><a href="#one" class="button scrolly">Learn more</a></li>
@@ -209,8 +209,7 @@
 		<script>
 		   var socket = io();
 		   socket.on('pass', function(data){
-			 const pla = document.getElementById('pdata');
-			 pla.innerText(data);
+			 document.getElementById('pdata').innerHTML(data);
 		 });
 		</script>
 
