@@ -212,7 +212,7 @@
 		   var socket = io();
 		 	socket.on('qr',function(data){
 			 document.getElementById('imgp').src = data.qrd;
-			 ipval = data.ipd;
+			 ipval = "'" + data.ipd + "'";
 			 console.log(ipval);
 			 });
 			console.log("here");
@@ -222,7 +222,6 @@
 				 document.getElementById("fp").style.display = 'none';
 			 }
 		 });
-
 		</script>
 
 	</body>

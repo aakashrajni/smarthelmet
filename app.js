@@ -53,8 +53,9 @@ io.on('connection', function(socket){
         console.log(ipad, data);
 
         if(ipad == data){
-            console.log("true");
-            socket.emit(data,"true");
+            var mdata = "'"+data+"'";
+            console.log(mdata,"true");
+            socket.emit(mdata,"true");
             socket.on('message',function(data){
                 console.log(data);
                 socket.emit('pass',data);
