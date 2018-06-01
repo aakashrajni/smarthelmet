@@ -213,13 +213,16 @@
 		 	socket.on('qr',function(data){
 			 document.getElementById('imgp').src = data.qrd;
 			 ipval = data.ipd;
+			 console.log(ipval);
 			 });
 		</script>
 		<script>
 			var pspc = io('/'+ipval);
 			pspc.on('change', function(data){
-			 if(data == "true")
-			 	document.getElementById("fp").hidden = true;
+			 if(data == "true"){
+				console.log("hidden");
+				 document.getElementById("fp").hidden = true;
+			 }
 		 });
 
 		</script>

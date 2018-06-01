@@ -48,7 +48,9 @@ io.on('connection', function(socket){
     // });
 
     socket.on('verify',function(data){
+        console.log(data);
         if(ifaces.address == data){
+            console.log("true");
             var psp = io.of('/'+data);
             psp.emit('change',"true");
             psp.on('message',function(data){
