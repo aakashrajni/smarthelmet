@@ -41,11 +41,24 @@ app.get('/', function(req,res){
 
 io.on('connection', function(socket){
     console.log('A user connected');
-    socket.emit('qr',qrurl);
-    socket.on('message',function(data){
-        console.log(data);
-        io.sockets.emit('pass',data);
+    socket.emit('qr',{qrd: qrurl , ipd: ifaces.address});
+    // socket.on('message',function(data){
+    //     console.log(data);
+    //     io.sockets.emit('pass',data);
+    // });
+
+    socket.on('verify',function(data){
+        if(ifaces.address == data){
+            var psp = io.of('/'+data);
+            psp.emit('change',"true");
+            psp.on('message',function(data){
+                console.log(data);
+                psp.emit('pass',data);
+            })
+        }    
     });
+
+
 
     socket.on('disconnect',function(){
         console.log('A user Disconnected');

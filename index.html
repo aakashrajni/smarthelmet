@@ -35,7 +35,7 @@
 
 				<!-- Intro -->
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
+						<div class="inner" id="fp">
 							<h1>Throttlers</h1>
 							<p id="pdata">Just another fine responsive site template designed by HTML5 UP<br />
 							and released for free under the Creative Commons.</p>
@@ -208,13 +208,20 @@
 			<!-- Socket.io -->
 		<script src = "/socket.io/socket.io.js"></script>
 		<script>
+		   var ipval;
 		   var socket = io();
-		   socket.on('pass', function(data){
-			 document.getElementById('pdata').innerHTML = data;
-		 });
 		 	socket.on('qr',function(data){
-			 document.getElementById('imgp').src = data;
+			 document.getElementById('imgp').src = data.qrd;
+			 ipval = data.ipd;
 			 });
+		</script>
+		<script>
+			var pspc = io('/'+ipval);
+			pspc.on('change', function(data){
+			 if(data == "true")
+			 	document.getElementById("fp").hidden = true;
+		 });
+
 		</script>
 
 	</body>
