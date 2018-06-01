@@ -6,7 +6,7 @@ var os = require('os');
 var ifaces = os.networkInterfaces();
 var PORT = process.env.PORT || 3000;
 var QRCode = require('qrcode');
-var qrurl;
+var qrurl,ipad;
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req,res){
@@ -22,13 +22,15 @@ app.get('/', function(req,res){
           if (alias >= 1) {
             // this single interface has multiple ipv4 addresses
             // console.log(ifname + ':' + alias, iface.address);
-            QRCode.toDataURL(iface.address, function (err, url) {
+            ipad = iface.address;
+            QRCode.toDataURL(ipad, function (err, url) {
                 qrurl = url;
               })
           } else {
             // this interface has only one ipv4 adress
             // console.log(ifname, iface.address);
-            QRCode.toDataURL(iface.address, function (err, url) {
+            ipad = iface.address;
+            QRCode.toDataURL(ipad, function (err, url) {
                 qrurl = url;
               })
           }
@@ -41,15 +43,16 @@ app.get('/', function(req,res){
 
 io.on('connection', function(socket){
     console.log('A user connected');
-    socket.emit('qr',{qrd: qrurl , ipd: ifaces.address});
+    socket.emit('qr',{qrd: qrurl , ipd: ipad});
     // socket.on('message',function(data){
     //     console.log(data);
     //     io.sockets.emit('pass',data);
     // });
 
     socket.on('verify',function(data){
-        console.log(data);
-        if(ifaces.address == data){
+        console.log(ipad, data);
+
+        if(ipad == data){
             console.log("true");
             var psp = io.of('/'+data);
             psp.emit('change',"true");
