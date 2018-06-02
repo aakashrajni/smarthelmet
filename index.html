@@ -234,7 +234,7 @@
 				console.log("received ping")
 				socket.emit('pong',{ beat : 1 });
 			 });
-			 socket.on('message',function(data){
+			 socket.on('pass',function(data){
 				document.getElementById("pdata").innerHTML = data;
 			 });
 		</script>
