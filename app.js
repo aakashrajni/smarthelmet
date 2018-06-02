@@ -55,7 +55,7 @@ io.on('connection', function(socket){
         if(ipad == data){
             var mdata = "'"+data+"'";
             console.log(mdata,"true");
-            socket.emit('mdata',"true");
+            socket.emit('mdata','true');
             console.log("emit");
         }    
     });
