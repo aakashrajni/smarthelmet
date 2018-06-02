@@ -217,7 +217,7 @@
 			<!-- Socket.io -->
 		<script src = "/socket.io/socket.io.js"></script>
 		<script>
-		   const ipval;
+		   
 		   var socket = io();
 			socket.on('mdata', function(data){
 			 if(data == "true"){
@@ -227,7 +227,7 @@
 		 });
 		 	socket.on('qr',function(data){
 			 document.getElementById('imgp').src = data.qrd;
-			 ipval = data.ipd;
+			 const ipval = data.ipd;
 			 console.log(ipval);
 			 });
 			 socket.on('ping',function(data){
