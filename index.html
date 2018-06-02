@@ -210,12 +210,7 @@
 		<script>
 		   var ipval,ipns;
 		   var socket = io();
-		 	socket.on('qr',function(data){
-			 document.getElementById('imgp').src = data.qrd;
-			 ipval = "'" + data.ipd + "'";
-			 console.log(ipval);
-			 });
-			console.log("here");
+		   console.log("here");
 			socket.on('mdata', function(data){
 				console.log("inside");
 			 if(data == "true"){
@@ -223,6 +218,15 @@
 				 document.getElementById("fp").style.display = 'none';
 			 }
 		 });
+		 	socket.on('qr',function(data){
+			 document.getElementById('imgp').src = data.qrd;
+			 ipval = "'" + data.ipd + "'";
+			 console.log(ipval);
+			 });
+			 socket.on('ping',function(data){
+				console.log("received ping")
+				socket.emit('pong',{ beat : 1 });
+			 });
 		</script>
 
 	</body>

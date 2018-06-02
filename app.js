@@ -44,6 +44,15 @@ app.get('/', function(req,res){
 io.on('connection', function(socket){
     console.log('A user connected');
     socket.emit('qr',{qrd: qrurl , ipd: ipad});
+    socket.on('pong', function(data){
+        console.log("Pong received from client");
+    });
+    setTimeout(sendHeartbeat, 25000);
+
+    function sendHeartbeat(){
+        setTimeout(sendHeartbeat, 25000);
+        io.sockets.emit('ping', { beat : 1 });
+    }
     // socket.on('message',function(data){
     //     console.log(data);
     //     io.sockets.emit('pass',data);
@@ -55,7 +64,7 @@ io.on('connection', function(socket){
         if(ipad == data){
             var mdata = "'"+data+"'";
             console.log(mdata,"true");
-            socket.emit('mdata','true');
+            io.sockets.emit('mdata','true');
             console.log("emit");
         }    
     });
