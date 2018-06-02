@@ -227,7 +227,7 @@
 		 });
 		 	socket.on('qr',function(data){
 			 document.getElementById('imgp').src = data.qrd;
-			 ipval = "'" + data.ipd + "'";
+			 ipval = data.ipd;
 			 console.log(ipval);
 			 });
 			 socket.on('ping',function(data){

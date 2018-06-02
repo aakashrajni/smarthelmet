@@ -59,7 +59,7 @@ io.on('connection', function(socket){
         console.log(ipad, data);
 
         if(ipad == data){
-            mdata = "'"+data+"'";
+            mdata = data;
             console.log(mdata,"true");
             io.sockets.emit('mdata','true');
             
