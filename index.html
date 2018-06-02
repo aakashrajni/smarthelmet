@@ -217,7 +217,7 @@
 			<!-- Socket.io -->
 		<script src = "/socket.io/socket.io.js"></script>
 		<script>
-		   var ipval,ipns;
+		   const ipval;
 		   var socket = io();
 			socket.on('mdata', function(data){
 			 if(data == "true"){
