@@ -45,7 +45,6 @@ io.on('connection', function(socket){
     console.log('A user connected');
     socket.emit('qr',{qrd: qrurl , ipd: ipad});
     socket.on('pong', function(data){
-        console.log("Pong received from client");
     });
     setTimeout(sendHeartbeat, 25000);
 
@@ -56,19 +55,14 @@ io.on('connection', function(socket){
     
 
     socket.on('verify',function(data){
-        console.log(ipad, data);
-
         if(ipad == data){
             mdata = data;
-            console.log(mdata,"true");
             io.sockets.emit('mdata','true');
             
         }    
     });
     socket.on('message',function(data){
-        console.log(data);
-        io.sockets.emit(mdata,data);
-        console.log("emit");
+        io.sockets.emit('pass',data);
     });
 
 
