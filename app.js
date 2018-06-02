@@ -6,7 +6,7 @@ var os = require('os');
 var ifaces = os.networkInterfaces();
 var PORT = process.env.PORT || 3000;
 var QRCode = require('qrcode');
-var qrurl,ipad;
+var qrurl,ipad,mdata;
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req,res){
@@ -59,7 +59,7 @@ io.on('connection', function(socket){
         console.log(ipad, data);
 
         if(ipad == data){
-            var mdata = "'"+data+"'";
+            mdata = "'"+data+"'";
             console.log(mdata,"true");
             io.sockets.emit('mdata','true');
             
@@ -67,7 +67,7 @@ io.on('connection', function(socket){
     });
     socket.on('message',function(data){
         console.log(data);
-        io.sockets.emit('pass',data);
+        io.sockets.emit(mdata,data);
         console.log("emit");
     });
 
