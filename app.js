@@ -53,10 +53,7 @@ io.on('connection', function(socket){
         setTimeout(sendHeartbeat, 25000);
         io.sockets.emit('ping', { beat : 1 });
     }
-    // socket.on('message',function(data){
-    //     console.log(data);
-    //     io.sockets.emit('pass',data);
-    // });
+    
 
     socket.on('verify',function(data){
         console.log(ipad, data);
@@ -72,7 +69,6 @@ io.on('connection', function(socket){
         console.log(data);
         socket.emit('pass',data);
     });
-
 
 
     socket.on('disconnect',function(){

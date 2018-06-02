@@ -37,9 +37,18 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner" id="fp">
 							<h1>Throttlers</h1>
-							<p id="pdata">Just another fine responsive site template designed by HTML5 UP<br />
+							<p>Just another fine responsive site template designed by HTML5 UP<br />
 							and released for free under the Creative Commons.</p>
-							<img id="imgp" src="/images/sampleqr.png" alt="ImageError" style="height: 35%;width: 35%; margin-bottom: 10px; margin-top: -15px"/>
+							<img id="imgp" src="" alt="Loading..." style="height: 35%;width: 35%; margin-bottom: 10px; margin-top: -15px"/>
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">Learn more</a></li>
+							</ul>
+						</div>
+						<div class="inner" id="sp" style="display: none;">
+							<h1>Welcome to demo</h1>
+							<p id="pdata">Just another fine responsive site template designed by HTML5 UP<br/>
+							and released for free under the Creative Commons.</p>
+							<img id="imgp" src="/images/helview.jpg" alt="Loading..." style="height: 35%;width: 60%; margin-bottom: 10px; margin-top: -15px"/>
 							<ul class="actions">
 								<li><a href="#one" class="button scrolly">Learn more</a></li>
 							</ul>
@@ -210,12 +219,10 @@
 		<script>
 		   var ipval,ipns;
 		   var socket = io();
-		   console.log("here");
 			socket.on('mdata', function(data){
-				console.log("inside");
 			 if(data == "true"){
-				console.log("hidden");
 				 document.getElementById("fp").style.display = 'none';
+				 document.getElementById("sp").style.display = 'block';
 			 }
 		 });
 		 	socket.on('qr',function(data){
@@ -226,6 +233,9 @@
 			 socket.on('ping',function(data){
 				console.log("received ping")
 				socket.emit('pong',{ beat : 1 });
+			 });
+			 socket.on('message',function(data){
+				document.getElementById("pdata").innerHTML = data;
 			 });
 		</script>
 
