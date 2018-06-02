@@ -56,11 +56,12 @@ io.on('connection', function(socket){
             var mdata = "'"+data+"'";
             console.log(mdata,"true");
             socket.emit('mdata',"true");
-            socket.on('message',function(data){
-                console.log(data);
-                socket.emit('pass',data);
-            });
+            console.log("emit");
         }    
+    });
+    socket.on('message',function(data){
+        console.log(data);
+        socket.emit('pass',data);
     });
 
 
